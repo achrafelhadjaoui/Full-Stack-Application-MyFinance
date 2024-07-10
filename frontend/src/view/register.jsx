@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+
 const Register = (props) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -15,9 +17,27 @@ const Register = (props) => {
     navigate('/login');
   };
 
-  const onButtonClick = () => {
-    // You'll update this function later...
-  };
+  const onButtonClick = async (e) => {
+    e.preventDefault();
+    
+    try {
+      const response = await axios.post('http://localhost:5000/api/register', {
+        firstName,
+        lastName,
+        email,
+        password
+      });
+
+      if (response.status === 201) {
+        // Handle successful registration
+        console.log('Registration successful', response.data);
+        // Optionally navigate to login or home page
+        navigate('/home');
+      }
+    } catch (error) {
+      // Handle error
+      console.error('Error registering user', error.response ? error.response.data : error.message);
+    }  };
 
   return (
     <div className="container">
