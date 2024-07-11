@@ -39,7 +39,6 @@ const register = async (req, res, next) => {
       lastName,
       email,
       password: hashedPassword,
-      isAdmin: false,
     });
     await newUser.save();
 
