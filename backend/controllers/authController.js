@@ -1,17 +1,16 @@
-import { Request, Response, NextFunction } from "express";
 import {
   BadRequestError,
   UnauthorizedError,
   NotFoundError,
-} from "../errors/index";
-import hashPassword from "../utils/hashPassword";
-import generateToken from "../utils/jwt";
-import comparePasswords from "../utils/comparePasswords";
+} from "../errors/index.js";
+import hashPassword from "../utils/hashPassword.js";
+import generateToken from "../utils/jwt.js";
+import comparePasswords from "../utils/comparePasswords.js";
 import { StatusCodes } from "http-status-codes";
-import User from "../models/user";
+import User from "../models/user.js";
 
 // User Register
-const register = async (req, res, next) => {
+const register = async (req, res) => {
   try {
     const { firstName, lastName, email, password } = req.body;
 
@@ -55,7 +54,7 @@ const register = async (req, res, next) => {
 };
 
 // User Login
-const loginUser = async (req, res, next) => {
+const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
 

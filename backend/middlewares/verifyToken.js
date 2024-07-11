@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import { UnauthorizedError } from "../errors/index";
+import { UnauthorizedError } from "../errors/index.js";
 import { StatusCodes } from "http-status-codes";
 
 
