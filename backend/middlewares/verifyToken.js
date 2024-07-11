@@ -1,7 +1,6 @@
 import jwt from "jsonwebtoken";
-import { UnauthorizedError } from "../errors/index";
+import { UnauthorizedError } from "../errors/index.js";
 import { StatusCodes } from "http-status-codes";
-import User, { IUser } from "../models/user";
 
 
 function verifyToken(req, res, next) {

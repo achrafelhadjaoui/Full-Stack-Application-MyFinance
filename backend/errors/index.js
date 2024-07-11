@@ -1,6 +1,6 @@
-import BadRequestError from "./BadRequestError";
-import UnauthorizedError from "./UnauthorizedError";
-import ValidationError from "./ValidationError";
-import NotFoundError from "./NotFoundError";
+import BadRequestError from "./BadRequestError.js";
+import UnauthorizedError from "./UnauthorizedError.js";
+import ValidationError from "./ValidationError.js";
+import NotFoundError from "./NotFoundError.js";
 
 export { BadRequestError, UnauthorizedError, NotFoundError, ValidationError };

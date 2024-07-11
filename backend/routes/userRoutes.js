@@ -1,12 +1,11 @@
 import {
-    updateUser,
-  } from "../controllers/usersController";
-  import { Router } from "express";
-  import { verifyToken } from "../middlewares/verifyToken";
-  
-  const routerUsers = Router();
-  
-  routerUsers.use(verifyToken);
-  routerUsers.put("/updateUserRole/:_id", updateUser);
-  
-  export { routerUsers };
+  updateUser,
+} from "../controllers/usersController.js";
+import express from 'express'
+const router = express.Router();
+import { verifyToken } from "../middlewares/verifyToken.js";
+
+router.use(verifyToken);
+router.put("/updateUser", updateUser);
+
+export { router };

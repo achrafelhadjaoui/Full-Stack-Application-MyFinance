@@ -1,9 +1,9 @@
 import { StatusCodes } from "http-status-codes";
-import User, { IUser } from "../models/user";
+import User from "../models/user.js";
 import {
   BadRequestError,
   NotFoundError,
-} from "../errors/index";
+} from "../errors/index.js";
 
 
 const updateUser = async (req, res) => {
