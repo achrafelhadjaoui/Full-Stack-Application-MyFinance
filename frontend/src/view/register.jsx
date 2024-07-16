@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { register } from '../repository/authRepository.js'
+
 
 const Register = (props) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [firstName, setfirstName] = useState('');
   const [lastName, setlastName] = useState('');
-  // const [emailError, setEmailError] = useState('');
-  // const [passwordError, setPasswordError] = useState('');
+
 
   const navigate = useNavigate();
 
@@ -19,14 +19,13 @@ const Register = (props) => {
 
   const onButtonClick = async (e) => {
     e.preventDefault();
-    
-    try {
-      const response = await axios.post('http://localhost:5000/api/register', {
+      const response = await register( {
         firstName,
         lastName,
         email,
         password
       });
+      localStorage.setItem('token', response.data.token);
 
       if (response.status === 201) {
         // Handle successful registration
@@ -34,10 +33,7 @@ const Register = (props) => {
         // Optionally navigate to login or home page
         navigate('/home');
       }
-    } catch (error) {
-      // Handle error
-      console.error('Error registering user', error.response ? error.response.data : error.message);
-    }  };
+    };
 
   return (
     <div className="container">
