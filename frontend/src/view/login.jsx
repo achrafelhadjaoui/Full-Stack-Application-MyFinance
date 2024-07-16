@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import {loginUser} from '../repository/authRepository.js'
 const Login = (props) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+
 
   const navigate = useNavigate();
 
@@ -12,9 +14,16 @@ const Login = (props) => {
     navigate('/register');
   };
 
-  const onButtonClick = () => {
-    // You'll update this function later...
-  };
+  const onButtonClick = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await loginUser({ email, password });
+      // Assuming the response contains a token
+      localStorage.setItem('token', response.data.token);
+      navigate('/home'); // Adjust the path as needed
+    } catch (error) {
+      setError(error.response?.data?.error || 'Login failed. Please try again.');
+    }  };
 
   return (
     <div className="container">
@@ -37,6 +46,7 @@ const Login = (props) => {
                 </div>
                 <input type="password" className="form-control" placeholder="Password" onChange={(ev) => setPassword(ev.target.value)} />
               </div>
+              {error && <div className="alert alert-danger">{error}</div>}
               <div className="form-group">
                 <input type="submit" value="Login" onClick={onButtonClick} className="btn float-right login_btn" />
               </div>
