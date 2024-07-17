@@ -8,6 +8,10 @@ const userSchema = new Schema({
   address: { type: String, required: false },
   city: { type: String, required: false },
   country: { type: String, required: false },
+  categorie: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Categorie'
+  }]
 });
 
 export default model("User", userSchema);
