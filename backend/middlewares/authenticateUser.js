@@ -1,6 +1,6 @@
 // Exemple de middleware d'authentification avec JWT
-const jwt = require('jsonwebtoken');
-const { UnauthorizedError } = require('../errors');
+import jwt from 'jsonwebtoken'
+import UnauthorizedError from '../errors/UnauthorizedError.js';
 
 const authenticateUser = (req, res, next) => {
   // Récupérer le token d'en-tête Authorization
@@ -21,4 +21,4 @@ const authenticateUser = (req, res, next) => {
   });
 };
 
-module.exports = { authenticateUser };
+export { authenticateUser };

@@ -40,4 +40,17 @@ const updateUser = async (req, res) => {
   }
 };
 
-export { updateUser };
+
+const getUsers = async (req, res) => {
+  try {
+    const users = await User.find().populate('categorie')
+    return res.status(StatusCodes.OK).json(users);
+  } catch (error) {
+    console.log(error);
+    const statusCode = error.statusCode || StatusCodes.INTERNAL_SERVER_ERROR;
+    return res.status(statusCode).json({ error: error.message });
+  }
+};
+
+
+export { updateUser, getUsers };
