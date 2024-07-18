@@ -1,12 +1,12 @@
 import React from 'react';
 
-const Home = () => {
+const Transaction = () => {
   return (
     <div className="wrapper">
-      <h1>Welcome, </h1>
+      <h1>Transaction, </h1>
       
     </div>
   );
 };
 
-export default Home;
+export default Transaction;

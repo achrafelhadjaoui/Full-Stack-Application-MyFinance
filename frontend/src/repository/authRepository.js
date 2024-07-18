@@ -1,12 +1,13 @@
 import axios from "axios";
 
-export const api = axios.create({ baseURL: 'http://localhost:5000' });
+export const api = axios.create({ baseURL: 'http://localhost:3006' });
 
 export const register = (user) => {
   return api.post("/register", user);
 };
 export const loginUser = (user) => {
     return api.post("/login", user);
+    
   };
 
   const getToken = () => {

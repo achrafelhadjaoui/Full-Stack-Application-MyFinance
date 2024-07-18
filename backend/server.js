@@ -30,9 +30,9 @@ mongoose
     .then(() => console.log("MongoDB connected .."))
     .catch((err) => console.error("MongoDB connection error :", err));
 
-app.use('/api', authRouter);
-app.use('/api', userRouter);
-app.use('/api', routerCategorie);
+app.use('/', authRouter);
+app.use('/', userRouter);
+app.use('/', routerCategorie);
 
 // tranaction
-app.use('/api', transactionRouter)
+app.use('/', transactionRouter)
