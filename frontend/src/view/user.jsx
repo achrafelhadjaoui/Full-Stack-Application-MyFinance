@@ -16,11 +16,8 @@ function ProfileEdit() {
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
-      // const decodedToken = jwtDecode(token);
-      // setEmail(decodedToken.user.email); 
       const decodedToken = parseJwt(token);
       setEmail(decodedToken.user.email)
-      console.log('email: ddd, ',decodedToken.user.email)
     }
   }, []);
   const parseJwt = (token) => {
@@ -59,19 +56,7 @@ function ProfileEdit() {
             </CardHeader>
             <CardBody>
               <Form>
-                {/* <Row>
-                  <Col md="12">
-                    <FormGroup>
-                      <label htmlFor="exampleInputEmail1">Email address</label>
-                      <Input
-                        placeholder="Email"
-                        type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                      />
-                    </FormGroup>
-                  </Col>
-                </Row> */}
+                
                 <Row>
                   <Col md="6">
                     <FormGroup>
@@ -79,7 +64,6 @@ function ProfileEdit() {
                       <Input
                         placeholder="First Name"
                         type="text"
-                        value={firstName}
                         onChange={(e) => setFirstName(e.target.value)}
                       />
                     </FormGroup>
@@ -90,7 +74,6 @@ function ProfileEdit() {
                       <Input
                         placeholder="Last Name"
                         type="text"
-                        value={lastName}
                         onChange={(e) => setLastName(e.target.value)}
                       />
                     </FormGroup>
@@ -103,7 +86,6 @@ function ProfileEdit() {
                       <Input
                         placeholder="Home Address"
                         type="text"
-                        value={address}
                         onChange={(e) => setAddress(e.target.value)}
                       />
                     </FormGroup>
@@ -116,7 +98,6 @@ function ProfileEdit() {
                       <Input
                         placeholder="City"
                         type="text"
-                        value={city}
                         onChange={(e) => setCity(e.target.value)}
                       />
                     </FormGroup>
@@ -127,7 +108,6 @@ function ProfileEdit() {
                       <Input
                         placeholder="Country"
                         type="text"
-                        value={country}
                         onChange={(e) => setCountry(e.target.value)}
                       />
                     </FormGroup>

@@ -15,6 +15,7 @@ const updateUser = async (req, res) => {
         error: new BadRequestError("Please fill all the data!").message,
       });
     }
+    console.log('gg aqua : ', firstName, lastName, email, address, city, country )
   
     const user = await User.findOne({ email });
     if (!user) {
