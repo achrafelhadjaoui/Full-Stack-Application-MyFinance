@@ -5,9 +5,9 @@ let CategorieSchma = new Schema({
     nom: String,
     budget: Number,
     montant: Number,
-    user: {
+    month: {
         type: Schema.Types.ObjectId,
-        ref: "User"
+        ref: "Month"
     },
     transaction: [{
         type: Schema.Types.ObjectId,
