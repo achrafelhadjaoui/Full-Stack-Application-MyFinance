@@ -5,6 +5,7 @@ import dotenv from 'dotenv';
 import  { router as authRouter }  from './routes/authRouter.js';
 import  { router as userRouter }  from './routes/userRoutes.js';
 import {routerCategorie} from './routes/categorieRouter.js'
+import { routerMonth } from './routes/monthRouter.js';
 import {router as transactionRouter} from './routes/transactionRouter.js'
 
 const app = express();
@@ -35,4 +36,7 @@ app.use('/', userRouter);
 app.use('/', routerCategorie);
 
 // tranaction
-app.use('/', transactionRouter)
+app.use('/', transactionRouter);
+
+//month
+app.use('/', routerMonth);

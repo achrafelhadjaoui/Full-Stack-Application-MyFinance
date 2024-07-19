@@ -1,19 +1,20 @@
 import Categorie from "../models/categorie.js";
-import User from "../models/user.js";
+import Month from "../models/month.js";
 import { StatusCodes } from "http-status-codes";
-import { BadRequestError } from "../errors/index.js";
+import { BadRequestError, UnauthorizedError } from "../errors/index.js";
 
 const postCategorie = async (req, res) => {
   try {
     // Check if the token exists
     if (!req.user || !req.user._id) {
-      throw new BadRequestError("No token provided");
+      throw new UnauthorizedError("Not authorized");
     }
 
-    const userId = req.user._id;
+    const monthId = req.params.id;
+    const month = await Month.findOne({ _id: monthId });
+    if (!month) throw new BadRequestError("month not found");
 
     const { nom, budget, montant } = req.body;
-
     // Validate required fields
     if (!nom || !budget || !montant) {
       throw new BadRequestError("Please provide all required fields");
@@ -30,19 +31,13 @@ const postCategorie = async (req, res) => {
       nom,
       budget,
       montant,
-      user: userId, // Assign the current user's _id to the category's user field
+      month: monthId, // Assign the current user's _id to the category's user field
     });
 
     await newCategorie.save();
 
-    // Add the new category's _id to the user's categorie array
-    const user = await User.findOne({ _id: userId });
-    if (!user) {
-      throw new BadRequestError("User not found");
-    }
-
-    user.categorie.push(newCategorie._id);
-    await user.save();
+    month.categorie.push(newCategorie._id);
+    await month.save();
 
     return res.status(StatusCodes.CREATED).json({ newCategorie });
   } catch (error) {
@@ -51,4 +46,28 @@ const postCategorie = async (req, res) => {
   }
 };
 
-export { postCategorie };
+const getCategories = async (req, res) => {
+  try {
+    // Check if the token exists
+    if (!req.user || !req.user._id) {
+      throw new UnauthorizedError("Not authorized");
+    }
+
+    const monthId = req.params.id;
+    const month = await Month.findOne({ _id: monthId });
+    if (!month) throw new BadRequestError("month not found");
+
+    // Check if the category not exist
+    const existingCategorie = await Categorie.find({ month: monthId });
+    if (!existingCategorie) {
+      throw new BadRequestError("Categories not found");
+    }
+
+    return res.status(StatusCodes.OK).json({ existingCategorie });
+  } catch (error) {
+    const statusCode = error.statusCode || StatusCodes.INTERNAL_SERVER_ERROR;
+    return res.status(statusCode).json({ error: error.message });
+  }
+};
+
+export { postCategorie, getCategories };

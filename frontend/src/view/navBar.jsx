@@ -9,6 +9,12 @@ function Navbar() {
     e.preventDefault();
     navigate('/transaction');
   };
+
+  const navigateToAcuille = (e) => {
+    e.preventDefault();
+    navigate('/acuille');
+  }
+ 
   const navigateToDashboard = (e) => {
     e.preventDefault();
     navigate('/dashboard');
@@ -26,7 +32,8 @@ function Navbar() {
 <nav className="navbar navbar-light bg-light justify-content-between">
   <a className="navbar-brand">My Finance</a>
   <form className="form-inline">
-    <a className="nav-item nav-link" onClick={navigateToTransaction}>Accueil</a>
+    <a className="nav-item nav-link" onClick={navigateToAcuille}>Accueil</a>
+    <a className="nav-item nav-link" onClick={navigateToTransaction}>Transaction</a>
     <a className="nav-item nav-link" onClick={navigateToDashboard}>Dashboard</a>
     <a className="nav-item nav-link" onClick={navigateToProfile}>Profile</a>
     <a className="nav-item nav-link" onClick={navigateToLogin}>Logout</a>
