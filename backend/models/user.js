@@ -8,9 +8,9 @@ const userSchema = new Schema({
   address: { type: String, required: false },
   city: { type: String, required: false },
   country: { type: String, required: false },
-  categorie: [{
+  month: [{
     type: Schema.Types.ObjectId,
-    ref: 'Categorie'
+    ref: 'Month'
   }]
 });
 

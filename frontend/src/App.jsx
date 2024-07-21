@@ -8,6 +8,9 @@ import Navbar from './view/navBar';
 import PrivateRoute from './view/PrivateRoute';
 import Transaction from './view/transaction';
 import Dashboard from './view/dashboard';
+import Acueill from './view/home';
+import AddMonthComponent from './view/postMonth';
+import AddCategory from './view/addCategorie';
 
 
 import './App.css';
@@ -62,6 +65,18 @@ function InnerApp({ loggedIn, setLoggedIn, email, setEmail }) {
         <Route
           path="/dashboard"
           element={<PrivateRoute element={<Dashboard />}/>}
+        />
+        <Route
+          path='/acuille'
+          element={<PrivateRoute element={<Acueill />}/>}
+        />
+        <Route
+          path="/month"
+          element={<PrivateRoute element={<AddMonthComponent />}/>}
+        />
+        <Route
+          path="/categorie"
+          element={<PrivateRoute element={<AddCategory />}/>}
         />
       </Routes>
     </>

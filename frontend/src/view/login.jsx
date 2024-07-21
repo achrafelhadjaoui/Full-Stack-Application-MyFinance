@@ -1,17 +1,17 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import {loginUser} from '../repository/authRepository.js'
-const Login = (props) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { loginUser } from "../repository/authRepository.js";
 
+const Login = (props) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
   const navigate = useNavigate();
 
   const navigateToRegister = (e) => {
     e.preventDefault();
-    navigate('/register');
+    navigate("/register");
   };
 
   const onButtonClick = async (e) => {
@@ -19,11 +19,14 @@ const Login = (props) => {
     try {
       const response = await loginUser({ email, password });
       // Assuming the response contains a token
-      localStorage.setItem('token', response.data.token);
-      navigate('/home'); // Adjust the path as needed
+      localStorage.setItem("token", response.data.token);
+      navigate("/home"); // Adjust the path as needed
     } catch (error) {
-      setError(error.response?.data?.error || 'Login failed. Please try again.');
-    }  };
+      setError(
+        error.response?.data?.error || "Login failed. Please try again."
+      );
+    }
+  };
 
   return (
     <div className="container">
@@ -36,25 +39,47 @@ const Login = (props) => {
             <form>
               <div className="input-group form-group">
                 <div className="input-group-prepend">
-                  <span className="input-group-text"><i className="fas fa-user"></i></span>
+                  <span className="input-group-text">
+                    <i className="fas fa-user"></i>
+                  </span>
                 </div>
-                <input type="text" className="form-control" placeholder="Email" onChange={(ev) => setEmail(ev.target.value)} />
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Email"
+                  onChange={(ev) => setEmail(ev.target.value)}
+                />
               </div>
               <div className="input-group form-group">
                 <div className="input-group-prepend">
-                  <span className="input-group-text"><i className="fas fa-key"></i></span>
+                  <span className="input-group-text">
+                    <i className="fas fa-key"></i>
+                  </span>
                 </div>
-                <input type="password" className="form-control" placeholder="Password" onChange={(ev) => setPassword(ev.target.value)} />
+                <input
+                  type="password"
+                  className="form-control"
+                  placeholder="Password"
+                  onChange={(ev) => setPassword(ev.target.value)}
+                />
               </div>
               {error && <div className="alert alert-danger">{error}</div>}
               <div className="form-group">
-                <input type="submit" value="Login" onClick={onButtonClick} className="btn float-right login_btn" />
+                <input
+                  type="submit"
+                  value="Login"
+                  onClick={onButtonClick}
+                  className="btn float-right login_btn"
+                />
               </div>
             </form>
           </div>
           <div className="card-footer">
             <div className="d-flex justify-content-center links">
-              Don't have an account?<a className="text-primary" onClick={navigateToRegister}>Sign Up</a>
+              Don't have an account?
+              <a className="text-primary" onClick={navigateToRegister}>
+                Sign Up
+              </a>
             </div>
           </div>
         </div>
