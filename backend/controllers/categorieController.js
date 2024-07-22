@@ -58,7 +58,7 @@ const getCategories = async (req, res) => {
     if (!month) throw new BadRequestError("month not found");
 
     // Check if the category not exist
-    const existingCategorie = await Categorie.find({ month: monthId });
+    const existingCategorie = await Categorie.find({ month: monthId }).populate('transaction').exec();
     if (!existingCategorie) {
       throw new BadRequestError("Categories not found");
     }
