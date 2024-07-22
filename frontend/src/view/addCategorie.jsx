@@ -19,8 +19,6 @@ const AddCategory = () => {
       const data = { nom: nom, budget, montant };
       const result = await postCategorie(data);
       setSuccess("Category posted successfully");
-      // Optionally navigate to another page
-      // navigate("/some-page");
     } catch (error) {
       setError("Failed to post the category");
     }

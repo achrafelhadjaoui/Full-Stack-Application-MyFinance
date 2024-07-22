@@ -1,6 +1,7 @@
 import api from "./authRepository";
 
 const categoryId = localStorage.getItem('category')
+const transactionId = localStorage.getItem('transaction')
 
 export const gettransaction = async () => {
   try {
@@ -18,6 +19,15 @@ export const postTransaction = async (data) => {
     return response.data;
   } catch (error) {
     console.error('Error posting the transaction:', error);
+    throw error;
+  }
+};
+export const updateTransaction = async (data) => {
+  try {
+    const response = await api.put(`/updatetransaction/${transactionId}`, data);
+    return response.data;
+  } catch (error) {
+    console.error('Error updating the transaction:', error);
     throw error;
   }
 };
