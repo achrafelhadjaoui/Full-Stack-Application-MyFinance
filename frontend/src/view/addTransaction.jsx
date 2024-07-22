@@ -14,12 +14,24 @@ const AddTransaction = () => {
     setSuccess(null);
 
     try {
-      const data = {type: transaction, montant, typeCategorie: categorie}
-      const result = await postTransaction(data)
-      setSuccess("Transaction added successfully");
+      const data = { type: transaction, montant, typeCategorie: categorie };
+      const result = await postTransaction(data);
+      setSuccess("Transaction added successfully!");
+      setTimeout(() => {
+        setSuccess(null);
+       
+      }, 5000);
+      
     } catch (error) {
       setError("Failed to add transaction");
+      setTimeout(() => {
+        setError(null);
+       
+      }, 5000);
     }
+    setTransaction("");
+      setCategorie("");
+      setMontant("");
   };
 
   return (
@@ -28,7 +40,7 @@ const AddTransaction = () => {
       {error && <div className="alert alert-danger">{error}</div>}
       {success && <div className="alert alert-success">{success}</div>}
       <form onSubmit={handleSubmit}>
-      <div className="form-group">
+        <div className="form-group">
           <label htmlFor="transaction">transaction</label>
           <input
             type="string"
