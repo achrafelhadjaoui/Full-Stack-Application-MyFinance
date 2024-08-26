@@ -5,7 +5,7 @@ const Acueill = () => {
  
   return (
     <div className="wrapper">
-      <h1>Welcome, </h1>
+      <h1 className='mb-3'>Welcome</h1>
       <MonthComponent />
     </div>
   );

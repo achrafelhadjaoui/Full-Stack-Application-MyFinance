@@ -31,3 +31,12 @@ export const updateTransaction = async (data) => {
     throw error;
   }
 };
+export const deleteTransaction = async () => {
+  try {
+    const response = await api.delete(`/deletetransaction/${transactionId}`);
+    return response.data;
+  } catch (error) {
+    console.error('Error deleting the transaction:', error);
+    throw error;
+  }
+};
