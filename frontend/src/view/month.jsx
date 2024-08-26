@@ -47,11 +47,11 @@ const MonthComponent = () => {
 
   return (
     <>
-    <div className="container d-flex justify-content-between">
-      <p>{currentMonth.currentMonth.nom}</p>
-      <p>{currentMonth.currentMonth.montant}</p>
+    <div className="container d-flex justify-content-between mb-3">
       {localStorage.setItem('month', currentMonth.currentMonth._id)}
+      <p>{currentMonth.currentMonth.nom}</p>
       <button className="btn" onClick={navigateToAddCategorie}>add categorie</button>
+      <p>{currentMonth.currentMonth.montant}<span>DH</span></p>
     </div>
     <Categories/>
     </>

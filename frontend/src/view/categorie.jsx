@@ -74,7 +74,7 @@ const Categories = () => {
                             style={{ fontSize: "1rem", display: "inline" }}
                           ></i>
                           <p style={{ display: "inline" }}>date</p>
-                          <p>Total Montant: {category.budget - totalMontant}</p>
+                          <p>Montant Rest: {category.budget - totalMontant} <span>DH</span></p>
                         </div>
                       </div>
                     </div>

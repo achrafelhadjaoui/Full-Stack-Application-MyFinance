@@ -70,9 +70,9 @@ const AddCategory = () => {
             className="form-control"
             name="montant"
             placeholder="Enter montant"
-            value={montant}
-            onChange={(e) => setMontant(e.target.value)}
-            required
+            value={budget}
+            //onChange={(e) => setMontant(e.target.value)}
+            disabled
           />
         </div>
         <button type="submit" className="btn btn-primary">Submit</button>
